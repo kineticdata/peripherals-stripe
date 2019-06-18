@@ -1,0 +1,44 @@
+== Stripe_Complete_Checkout
+This handler completes a payment transaction with Stripe started via Stripe's javascript API.
+
+=== Parameters
+[Summary]
+  A summary of the issue.
+[Project Key]
+  The Key of the project that the issue will be added to.
+[Issue Type]
+  The name of the issue type (ie. Bug, New Feature, Task, etc).
+[Priority]
+  The name of the issue priority (ie. Major, Minor, Critical, etc).
+[Assignee]
+  The username of the person you want to assign this issue to.
+[Due Date]
+  The due date of the issue in the form of YYYY-MM-DD.
+[Description]
+  An in-depth explanation of the issue.
+
+=== Results
+[Id]
+  The id of the issue that was created.
+[Key]
+  The key of the issue that was created.
+[Url]
+  The url of the issue that was created.
+
+==== Sample Configuration
+Summary:                   Something is broken
+Project Key:               DEMO
+Issue Type:                Bug
+Priority:                  Major
+Assignee:                  joe.user
+Due Date:                  2014-08-22
+Description:               Specifics about the bug
+
+=== Detailed Description
+This handler uses the Jira Rest API library to create an issue
+within a Jira project. The handler first puts the data that was
+inputted into the JSON format and then posts that information
+using a REST call with basic auth. (WARNING: Using this handler
+without enabling SSL will not be secure). The id, key, and url of
+the issue will be returned by the handler. Any errors that occur
+during the process will be caught and re-raised by this handler.

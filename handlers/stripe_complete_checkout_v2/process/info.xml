@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taskInfo version="2.0">
+    <info name="stripe_api_secret" type="encrypted" description="Your Stripe secret API Key. Typically starts with sk_">sk_test_abc1234123412341234</info>
+    <info name="enable_debug_logging" description="Enable debug logging if the value is set to 'Yes'.">No</info>
+</taskInfo>

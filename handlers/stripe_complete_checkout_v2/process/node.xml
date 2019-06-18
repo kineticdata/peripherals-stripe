@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="stripe_complete_checkout" name="Stripe Complete Checkout" schema_version="1.0" version="2">
+    <author>support@kineticdata.com</author>
+    <description>This handler creates submits a credit card transaction to Stripe to complete a transaction.</description>
+    <helpurl>http://ktc.kineticdata.com/handler/stripe_complete_checkout/1</helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="amount" label="Amount" required="true"
+            tooltip="The amount of the transaction in cents. Must be a positive integer or zero"/>
+        <parameter id="currency" label="Currency" required="false"
+            tooltip="Three-letter ISO currency code representing the currency in which the charge was made. Defaults to 'usd'."/>
+        <parameter id="card" label="Card" required="true"
+            tooltip="The stripe token representing the card/transcation generated via the stripe javascript API typically via a form and payment button." />
+        <parameter id="description" label="Description" required="true"
+            tooltip="A description of this transaction.  This should be consistent with what is shown to the user during payment."/>
+        <parameter id="receipt_email" label="Receipt Email" required="false"
+            tooltip="An email to have Stripe send a receipt to (if emails configured in Stripe account)."/>
+    </parameters>
+    <handler name="stripe_complete_checkout" version="2">
+        <infos>
+            <info name="stripe_api_secret">&lt;%= @info['stripe_api_secret'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="amount">&lt;%= @parameters['amount'] %&gt;</parameter>
+            <parameter name="currency">&lt;%= @parameters['currency'] %&gt;</parameter>
+            <parameter name="card">&lt;%= @parameters['card'] %&gt;</parameter>
+            <parameter name="description">&lt;%= @parameters['description'] %&gt;</parameter>
+            <parameter name="receipt_email">&lt;%= @parameters['receipt_email'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml">
+        <result name='charge_id'></result>
+        <result name='success'></result>
+        <result name='message'></result>
+    </results>
+</taskDefinition>
